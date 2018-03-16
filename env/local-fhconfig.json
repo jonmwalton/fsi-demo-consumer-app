@@ -1,0 +1,14 @@
+{
+  "pushServerURL": "https://psdev.us.evals.redhatmobile.com/api/v2/ag-push/",
+  "android": {
+    "senderID": "374207193530",
+    "variantID": "f12215ff-4a9e-4b71-bd76-673915981bd3",
+    "variantSecret": "0bf81df0-d937-4435-b741-75ec919795cc"
+  },
+  "appid": "mpas6ioe2qde7uhelfqnndxp",
+  "appkey": "af0d40da47fc898bb934200818eff48958d2cf69",
+  "apptitle": "consumerApp",
+  "connectiontag": "0.0.5",
+  "host": "http://localhost:8001",
+  "projectid": "mpas6imh6gwkwmel5x5to2za"
+}

@@ -1,0 +1,29 @@
+
+page-login {
+
+  .login-wrapper {
+      background: url("../assets/images/login-bg.png");
+      background-size: cover;
+  }
+
+  .logo-position {
+    position: absolute;
+    top: 16%;
+    left: 25%;
+  }
+
+  .form-wrapper {
+    width: 100%;
+    background: color($colors, form-background);
+    position: relative;
+    top:38%;
+  }
+
+  // ion-input {
+  //   border-bottom: 1px solid color($colors, label-text);
+  // }
+
+  ion-label, ion-input {
+    font-size: 2rem;
+  }
+}

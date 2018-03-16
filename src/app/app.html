@@ -1,0 +1,55 @@
+<ion-menu [content]="nav">
+  <ion-header color="dark">
+    <img src="assets/images/drawer-graphic.png">
+    <!-- <img class="fsi-drawer-logo" src="{{ drawerLogo }}"> -->
+  </ion-header>
+  <ion-content>
+    <ion-list no-lines>
+      <ion-item ion-item (click)="onload(appPage)">
+        <ion-icon color="dark" name="fsi-icon-applications" item-left></ion-icon>
+        Applications
+      </ion-item>
+
+      <ion-item (click)="onload(productsPage)">
+        <ion-icon name="fsi-icon-products" color="dark" item-left></ion-icon>
+        Products
+      </ion-item>
+
+      <ion-item (click)="onload()">
+        <ion-icon name="fsi-icon-company_details" color="dark" item-left></ion-icon>
+        Company Details
+      </ion-item>
+
+      <ion-item (click)="onload()">
+        <ion-icon name="fsi-icon-chat" color="dark" item-left></ion-icon>
+        Chat
+      </ion-item>
+
+      <hr />
+
+      <ion-item (click)="onload()">
+        <ion-icon name="fsi-icon-contacts" color="dark" item-right></ion-icon>
+        Contact
+      </ion-item>
+
+      <ion-item (click)="onload()">
+        <ion-icon name="fsi-icon-settings" color="dark" item-right></ion-icon>
+        Settings
+      </ion-item>
+
+      <ion-item (click)="onload()">
+        <ion-icon name="fsi-icon-info" color="dark" item-right></ion-icon>
+        About
+      </ion-item>
+
+      <ion-item (click)="logout()">
+        <ion-icon name="fsi-icon-exit" color="dark" item-right></ion-icon>
+        Logout
+      </ion-item>
+
+      <img src="assets/images/rh-logo.png" class="fsi-drawer-rh-logo">
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+ <ion-nav [root]="rootPage" #nav></ion-nav>

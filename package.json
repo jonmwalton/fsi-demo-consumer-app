@@ -1,0 +1,113 @@
+{
+  "name": "fsi-consumer-app",
+  "version": "0.0.1",
+  "author": "Red hat Mobile Services",
+  "homepage": "http://www.redhat.com/en",
+  "private": true,
+  "scripts": {
+    "clean": "ionic-app-scripts clean",
+    "build": "ionic-app-scripts build",
+    "lint": "ionic-app-scripts lint",
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve",
+    "rhmap:target": "./scripts/copy-fhconfig.sh ",
+    "build:android": "cordova build android ; cordova run android --target=Pixel_API_25",
+    "build:test": "npm run rhmap:target test ; npm run clean ; npm run build",
+    "start:local": "npm run rhmap:target local ; npm run ionic:serve",
+    "start:dev": "npm run rhmap:target dev ; npm run ionic:serve",
+    "start:test": "npm run rhmap:target test ; npm run ionic:serve"
+  },
+  "devDependencies": {
+    "@angular/common": "4.1.3",
+    "@angular/compiler": "4.1.3",
+    "@angular/compiler-cli": "4.1.3",
+    "@angular/core": "4.1.3",
+    "@angular/forms": "4.1.3",
+    "@angular/http": "4.1.3",
+    "@angular/platform-browser": "4.1.3",
+    "@angular/platform-browser-dynamic": "4.1.3",
+    "@ionic-native/core": "3.12.1",
+    "@ionic-native/splash-screen": "3.12.1",
+    "@ionic-native/status-bar": "3.12.1",
+    "@ionic/cli-plugin-ionic-angular": "1.4.1",
+    "@ionic/storage": "2.0.1",
+    "cordova-android": "6.2.3",
+    "cordova-ios": "4.4.0",
+    "cordova-plugin-console": "1.0.5",
+    "cordova-plugin-device": "1.1.4",
+    "cordova-plugin-splashscreen": "4.0.3",
+    "cordova-plugin-statusbar": "2.2.2",
+    "cordova-plugin-whitelist": "1.3.1",
+    "cordova-sqlite-storage": "2.0.4",
+    "fh-js-sdk": "^2.20.0",
+    "install": "^0.10.1",
+    "ionic": "3.9.2",
+    "ionic-angular": "3.4.2",
+    "ionic-plugin-keyboard": "2.2.1",
+    "ionicons": "3.0.0",
+    "lodash": "4.17.4",
+    "rxjs": "5.4.0",
+    "sw-toolbox": "3.6.0",
+    "zone.js": "0.8.12"
+  },
+  "dependencies": {
+    "@ionic-native/camera": "4.2.1",
+    "@ionic-native/device": "4.2.1",
+    "@ionic/app-scripts": "1.3.8",
+    "@ionic/cli-plugin-cordova": "1.4.1",
+    "@ionic/cli-plugin-ionic-angular": "1.3.2",
+    "@types/lodash": "4.14.70",
+    "@types/moment": "2.13.0",
+    "aerogear-cordova-push": "~3.1.0",
+    "cordova-android": "~6.2.3",
+    "cordova-ios": "4.4.0",
+    "cordova-plugin-camera": "2.4.1",
+    "cordova-plugin-compat": "1.1.0",
+    "cordova-plugin-console": "1.0.5",
+    "cordova-plugin-device": "1.1.4",
+    "cordova-plugin-splashscreen": "~4.0.1",
+    "cordova-plugin-statusbar": "2.2.2",
+    "cordova-plugin-whitelist": "1.3.1",
+    "cordova-sqlite-storage": "2.0.4",
+    "ionic": "3.6.0",
+    "ionic-plugin-keyboard": "~2.2.1",
+    "typescript": "2.3.4"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-whitelist",
+    "cordova-plugin-console",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-device",
+    "cordova-plugin-splashscreen",
+    "ionic-plugin-keyboard"
+  ],
+  "cordovaPlatforms": [
+    "ios",
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
+    }
+  ],
+  "description": "fsi-demo-consumerApp: An Red Hat FSI project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-console": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "ionic-plugin-keyboard": {},
+      "cordova-sqlite-storage": {},
+      "aerogear-cordova-push": {},
+      "cordova-plugin-camera": {
+        "CAMERA_USAGE_DESCRIPTION": " ",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
+      }
+    },
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  }
+}

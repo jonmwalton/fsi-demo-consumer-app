@@ -1,0 +1,146 @@
+page-product-application {
+
+  ion-content {
+    background: color($colors, slide-bg);
+  }
+
+  ion-slide {
+    justify-content: flex-start;
+    overflow: auto;
+  }
+
+  .label-md[stacked] {
+    font-size: 1.5rem;
+  }
+
+  .slide-content {
+    background: white;
+    // width: 92%;
+    height: 550px;
+    margin: 0 auto;
+    overflow-x: scroll;
+
+    // -webkit-box-shadow: -2px -8px 32px -14px rgba(0,0,0,0.75);
+    // -moz-box-shadow: -2px -8px 32px -14px rgba(0,0,0,0.75);
+    // box-shadow: -2px -8px 32px -14px rgba(0,0,0,0.75);
+  }
+
+  .uploadIconBg {
+    background: color($colors, header-background);
+  }
+
+  .attachIconBg {
+    background: color($colors, primary);
+  }
+
+  .fileUploadItem {
+    font-size: 1.1em;
+  }
+
+  .slide-zoom {
+    height: 100%;
+    background: color($colors, slide-bg);
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid color($colors, slide-bg);
+  }
+  // .form-wrapper {
+  //   width: 80%;
+  // }
+
+  // ion-list:first-child {
+  //   margin-top: 20px;
+  // }
+
+  .cardBtns {
+    background: white;
+    font-size: 1.2em;
+  }
+
+  // ion-scroll[scrollX] {
+  //   white-space: nowrap;
+  //   ion-item {
+  //     display: inline-block;
+  //   }
+  // }
+
+  .submitBtn {
+    // color: white;
+    background: color($colors, header-background);
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+
+  .item-radio-checked.item-md ion-label {
+    color: color($colors, label-text);
+  }
+
+  .slide-height {
+    min-height: 565px;
+
+    ion-list {
+      .item-divider-md,
+      .item-divider-ios  {
+        width: 100%;
+        font-size: 1.5rem;
+        color: color($colors, label-text);
+        background: color($colors, slide-bg);
+
+        ion-label {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+
+  .border-top {
+    border-top: 1px solid color($colors, form-background);
+  }
+
+  .img-loan {
+    background: url('../assets/images/home-loan-bg.png') transparent;
+    background-size: 100% 100%;
+    height: 265px;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .img-card {
+    background: url('../assets/images/credit-card-bg.png') transparent;
+    background-size: 100% 100%;
+    height: 265px;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .img-credit {
+    background: url('../assets/images/credit-bg.png') transparent;
+    background-size: 100% 100%;
+    height: 265px;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .male {
+    background-image:url('../assets/images/male.png');
+  }
+
+  .female{
+    background-image:url('../assets/images/female.png');
+  }
+
+  .white-bg {
+    background-color: #fff;
+  }
+
+  ion-list-header {
+    background-color: #fff;
+  }
+
+  ion-fab[bottom] {
+    bottom: 60px;
+  }
+
+
+}

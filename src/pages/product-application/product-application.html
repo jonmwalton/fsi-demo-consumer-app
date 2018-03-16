@@ -1,0 +1,392 @@
+<!--
+  Generated template for the ProductApplication page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="header-background">
+    <ion-title start *ngIf="data">
+      <!-- {{updateSlideTitle(slideIndex)}} -->
+      {{slideTitle}}
+    </ion-title>
+
+    <ion-buttons end>
+      <button *ngIf="slideIndex === 4 && !disable" ion-button class="submitBtn" color="white" (click)="onSubmit()"
+        icon-right>
+        Submit
+        <ion-icon color="white" name="fsi-icon-send"></ion-icon>
+      </button>
+
+      <button *ngIf="slideIndex === 5 && showSubmitDocs && data.currentTaskName === 'Request Additional Documentation'" 
+        ion-button 
+        class="submitBtn" 
+        color="white" 
+        (click)="submitTask('Docs')"
+        icon-right>
+      Submit
+      <ion-icon color="white" name="fsi-icon-send"></ion-icon>
+    </button>
+
+      <button *ngIf="slideIndex === 6 && showSubmitDate && data.currentTaskName === 'Confirm Interview'"  
+        ion-button 
+        class="submitBtn" 
+        color="white" 
+        (click)="submitTask('Date')"
+        icon-right>
+    Submit
+    <ion-icon color="white" name="fsi-icon-send"></ion-icon>
+  </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-slides pager (ionSlideDidChange)="slideChanged()">
+    <!-- Step 1:  Product Card -->
+    <ion-slide *ngIf="data && data.productObj" class="slide-height">
+      <ion-card>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/images/{{ data.productObj.type }}.png">
+          </ion-avatar>
+          <h2>{{ data.productObj.name }} Application</h2>
+          <p>
+            <span item-start>Code: {{ data.productObj.id }}</span>
+            <span item-end>Type: <span text-capitalize>{{ data.productObj.productType }}</span></span>
+          </p>
+        </ion-item>
+
+        <img class="img-{{ data.productObj.type }}" />
+
+        <ion-card-content>
+          <p text-left text-wrap>{{ data.productObj.desc }}</p>
+        </ion-card-content>
+
+        <ion-item-divider dark></ion-item-divider>
+
+        <ion-row>
+          <ion-col>
+            <button (click)="deleteApplicationDialog()" class="cardBtns" icon-left clear>
+              <ion-icon name="fsi-icon-delete" color="black"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col></ion-col>
+          <ion-col center text-center>
+            <button class="cardBtns" icon-left clear>
+              <div>LEARN MORE</div>
+            </button>
+          </ion-col>
+        </ion-row>
+
+      </ion-card>
+    </ion-slide>
+
+    <!-- Step 2:  Personal Details -->
+    <ion-slide class="slide-height">
+      <!-- <ion-scroll scrollX class="slide-height"> -->
+      <ion-list *ngIf="personalDetailsForm" class="slide-content" margin-top padding-horizontal
+        no-lines>
+
+        <!-- <ion-item padding-vertical>
+          <ion-label>Use Profile data?</ion-label>
+          <ion-checkbox checked="true"></ion-checkbox>
+        </ion-item> -->
+
+        <form class="form-wrapper" [formGroup]="personalDetailsForm">
+          <ion-item formGroupName="name">
+            <ion-label color="label-text" stacked>Title</ion-label>
+            <ion-select color="text-color" interface="popover" class="border-bottom" formControlName="salutation">
+              <ion-option value="Mr">Mr</ion-option>
+              <ion-option value="Mrs">Mrs</ion-option>
+              <ion-option value="Miss">Miss</ion-option>
+              <ion-option value="other">Other</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <!-- <ion-item-divider no-padding dark></ion-item-divider> -->
+
+          <ion-item formGroupName="name">
+            <ion-label color="label-text" stacked>First Name</ion-label>
+            <ion-input color="text-color" class="border-bottom" type="text" formControlName="givenName"></ion-input>
+          </ion-item>
+
+          <!-- <ion-item-divider no-padding dark></ion-item-divider> -->
+
+          <ion-item formGroupName="name">
+            <ion-label color="label-text" stacked>Middle Name</ion-label>
+            <ion-input color="text-color" class="border-bottom" type="text" formControlName="middleName"></ion-input>
+          </ion-item>
+
+          <!-- <ion-item-divider no-padding dark></ion-item-divider> -->
+
+          <ion-item formGroupName="name">
+            <ion-label color="label-text" stacked>Last Name</ion-label>
+            <ion-input color="text-color" class="border-bottom" type="text" formControlName="surname"></ion-input>
+          </ion-item>
+
+          <!-- <ion-item radio-group formGroupName="demographics">
+            <ion-label>Gender</ion-label>
+            <ion-radio formControlName="gender" value="MALE" class="male"></ion-radio>
+            <ion-radio formControlName="gender" value="FEMALE" class="female"></ion-radio> -->
+
+          <!-- <ion-avatar item-end>
+              <img formControlName="gender" value="MALE" src="assets/images/male.png">
+            </ion-avatar> -->
+          <!-- <ion-avatar item-end>
+              <img formControlName="gender" value="FEMALE" src="assets/images/female.png">
+            </ion-avatar> -->
+          <!-- </ion-item> -->
+
+          <!-- <ion-item-divider dark></ion-item-divider> -->
+
+          <ion-item formGroupName="demographics">
+            <ion-label color="label-text" stacked>Date of Birth</ion-label>
+            <ion-datetime color="input-border" class="border-bottom" displayFormat="DD/MM/YYYY"
+              pickerFormat="DD/MM/YYYY" formControlName="dateOfBirth"></ion-datetime>
+          </ion-item>
+
+          <!-- <ion-item-divider no-padding dark></ion-item-divider> -->
+
+          <ion-item formGroupName="demographics">
+            <ion-label color="label-text" stacked>Country of Birth</ion-label>
+            <ion-select class="border-bottom" interface="popover" color="text-color" formControlName="countryOfBirth">
+              <ion-option *ngFor="let country of countries" value="{{ country.code }}">{{ country.name }}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <!-- <ion-item-divider no-padding dark></ion-item-divider> -->
+
+          <ion-item padding-vertical formGroupName="demographics">
+            <ion-label color="label-text" stacked>Place of Birth</ion-label>
+            <ion-select class="border-bottom" interface="popover" color="text-color" formControlName="birthPlace">
+              <ion-option value="Dublin">Dublin</ion-option>
+              <ion-option value="Waterford">Waterford</ion-option>
+              <ion-option value="Wexford">Wexford</ion-option>
+              <ion-option value="Cork">Cork</ion-option>
+              <ion-option value="Sydney">Sydney</ion-option>
+            </ion-select>
+          </ion-item>
+        </form>
+      </ion-list>
+      <!-- </ion-scroll> -->
+
+    </ion-slide>
+
+    <!-- Step 3:  Financial Details -->
+    <ion-slide class="slide-height">
+      <ion-list *ngIf="financialInformationForm" class="slide-content" no-lines>
+
+        <form class="form-wrapper" [formGroup]="financialInformationForm">
+          <ion-item-divider no-padding text-left>Finanical Information</ion-item-divider>
+
+          <ion-item class="border-bottom" padding radio-group formControlName="hasForeseeableFinancialChanges">
+            <ion-label color="label-text" stacked>Foreseeable Finanical Changes</ion-label>
+            <ion-radio color="text-color" value="true"></ion-radio>
+          </ion-item>
+
+          <ion-item class="border-bottom" padding radio-group formControlName="nonBankDebtObligationFlag">
+            <ion-label color="label-text" stacked>Non Back Debt</ion-label>
+            <ion-radio color="text-color" value="true"></ion-radio>
+          </ion-item>
+
+          <ion-item padding-horizontal formGroupName="incomeDetails">
+            <ion-label color="label-text" stacked>Cost of Living Frequency</ion-label>
+            <ion-select class="border-bottom"  interface="popover" color="text-color" formControlName="frequency">
+              <ion-option value="WEEKLY">Weekly</ion-option>
+              <ion-option value="FORTNIGHTLY">Fortnightly</ion-option>
+              <ion-option value="MONTHLY">Monthly</ion-option>
+              <ion-option value="OTHER">Other</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item padding-horizontal formGroupName="incomeDetails">
+            <ion-label color="label-text" stacked>Cost of Living Amount</ion-label>
+            <ion-input class="border-bottom" color="text-color" type="number" formControlName="variableAmount"></ion-input>
+          </ion-item>
+
+          <ion-item-divider no-padding margin-top text-left>Income Details</ion-item-divider>
+
+          <ion-item padding-horizontal formGroupName="incomeDetails">
+            <ion-label color="label-text" stacked>Income Type</ion-label>
+            <ion-select class="border-bottom" interface="popover" color="text-color" formControlName="incomeType">
+              <ion-option value="WAGE">Wage</ion-option>
+              <ion-option value="DECLARED_FIXED">Fixed</ion-option>
+              <ion-option value="SALARY">Salary</ion-option>
+              <ion-option value="COMMISSION">Sales Commission</ion-option>
+              <ion-option value="BIK">Benefit in Kind</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item padding-horizontal formGroupName="incomeDetails">
+            <ion-label color="label-text" stacked>Fixed Amount</ion-label>
+            <ion-input class="border-bottom" color="text-color" type="number" formControlName="fixedAmount"></ion-input>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-slide>
+
+    <!-- Step 4:  Employment Details -->
+    <ion-slide class="slide-height">
+      <ion-list *ngIf="employmentDetailsForm" class="slide-content" style="height: 300px;"
+        margin-top no-lines>
+
+        <form class="form-wrapper" [formGroup]="employmentDetailsForm">
+
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Employer Name</ion-label>
+            <ion-input class="border-bottom" color="text-color" type="text" formControlName="employerName"></ion-input>
+          </ion-item>
+
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Job Title</ion-label>
+            <ion-input class="border-bottom" color="text-color" type="text" formControlName="jobTitle"></ion-input>
+          </ion-item>
+
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Employment Duration</ion-label>
+            <ion-select class="border-bottom" interface="popover" color="text-color" formControlName="employmentDuration">
+              <ion-option value="1">1 Year</ion-option>
+              <ion-option value="2">2 Years</ion-option>
+              <ion-option value="3">3 Years</ion-option>
+              <ion-option value="4">4 Years</ion-option>
+              <ion-option value="5">5 Years or more.</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Employment Status</ion-label>
+            <ion-select class="border-bottom" interface="popover" color="text-color" formControlName="employmentStatus">
+              <ion-option value="EMPLOYED">Employed</ion-option>
+              <ion-option value="UNEMPLOYED">Unemployed</ion-option>
+              <ion-option value="SELF_EMPLOYED">Self Employed</ion-option>
+              <ion-option value="COMPANY_DIRECTOR">Company Director</ion-option>
+              <ion-option value="CONTRACTOR">Contractor</ion-option>
+              <ion-option value="OTHER">Other</ion-option>
+            </ion-select>
+          </ion-item>
+        </form>
+
+      </ion-list>
+    </ion-slide>
+
+    <!-- Step 5:  Loan Details -->
+    <ion-slide class="slide-height">
+      <ion-list *ngIf="mortgageDetailsForm" class="slide-content" style="height: 420px;"
+        margin-top no-lines>
+
+        <form class="form-wrapper" [formGroup]="mortgageDetailsForm">
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Application Type</ion-label>
+            <ion-select class="border-bottom" interface="popover" color="text-color" formControlName="type">
+              <ion-option value="firstTime">First Home</ion-option>
+              <ion-option value="secondTime">Second Home</ion-option>
+              <ion-option value="thirdTimePlus">Third Home or more</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Location of Property</ion-label>
+            <ion-input class="border-bottom" color="text-color" type="text" formControlName="location"></ion-input>
+          </ion-item>
+
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Property Valuation</ion-label>
+            <ion-input class="border-bottom" color="text-color" type="number" formControlName="propertyValue"></ion-input>
+          </ion-item>
+
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Loan Amount</ion-label>
+            <ion-input class="border-bottom" color="text-color" type="number" formControlName="amount"></ion-input>
+          </ion-item>
+
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Deposit Amount</ion-label>
+            <ion-input class="border-bottom" color="text-color" type="number" formControlName="deposit"></ion-input>
+          </ion-item>
+
+          <ion-item padding-horizontal>
+            <ion-label color="label-text" stacked>Term (Years)</ion-label>
+            <ion-input class="border-bottom" color="text-color" type="number" formControlName="term"></ion-input>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-slide>
+
+    <!-- Step 6:  File Upload -->
+    <ion-slide *ngIf="reqDocUpload && data && data.Application && data.Application.files"
+      class="slide-height">
+      <ion-list *ngIf="data.Application.files.length > 0" no-lines margin-top class="slide-content">
+
+        <ion-list-header text-left>Uploaded Documents</ion-list-header>
+
+        <ion-item *ngFor="let file of data.Application.files; let id = index">
+          <button *ngIf="file.type === 'Photo'" style="width: 40px; height: 40px;" ion-button
+            icon-only item-start class="uploadIconBg">
+              <ion-icon  center center name="fsi-icon-photo" color="white"></ion-icon>
+            </button>
+
+          <button *ngIf="file.type === 'Attachment'" style="width: 40px; height: 40px;" ion-button
+            icon-only item-start class="attachIconBg">
+              <ion-icon  center center name="fsi-icon-attachment" color="white"></ion-icon>
+            </button>
+
+          <h2 (click)="displayImageReview(file)">{{ file.type }} {{ id + 1 }}</h2>
+          <p (click)="displayImageReview(file)">{{ file.created | date:'fullDate' }} </p>
+
+          <!-- <button ion-button icon-only color="white" item-end (delete)="deleteUpload(id)"> -->
+            <!-- <ion-icon zitem-end name="fsi-icon-delete" color="label-text"></ion-icon> -->
+          <!-- </button> -->
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngIf="data.Application.files.length === 0" no-lines>
+        <ion-list-header class="white-bg" text-left text-wrap>
+          <p>Please upload photos of Passport and Utility Bill and then Submit</p>
+        </ion-list-header>
+        <ion-item>
+          <p>No documents have been submitted.</p>
+        </ion-item>
+      </ion-list>
+
+      <ion-fab bottom right>
+        <button color="secondary" ion-fab>
+            <ion-icon name="fsi-icon-file_upload" color="white"></ion-icon>
+          </button>
+        <ion-fab-list side="top">
+          <button (click)="openPhotoLib()" color="secondary" ion-fab>
+            <ion-icon name="fsi-icon-attach_file" color="white"></ion-icon>
+          </button>
+          <button (click)="takePhoto()" color="secondary" ion-fab>
+              <ion-icon name="fsi-icon-add_photo" color="white"></ion-icon>
+            </button>
+        </ion-fab-list>
+      </ion-fab>
+    </ion-slide>
+
+    <!-- Step 7:  Confirm Interview -->
+    <!-- <ion-slide *ngIf="confirmInterview" class="slide-height"> -->
+
+    <ion-slide *ngIf="confirmInterview && data && data.currentTaskForm" class="slide-height">
+      <ion-list *ngIf="data.currentTaskForm.form && data.currentTaskForm.form.confirmInterview" no-lines margin-top radio-group class="slide-content" (ionChange)="submitInterviewDate($event)">
+
+        <ion-item *ngFor="let date of data.currentTaskForm.form.confirmInterview">
+          <ion-avatar item-start>
+              <img src="assets/images/calendar-blue.png">
+            <!-- <button style="width: 40px; height: 40px;" ion-button icon-only item-start class="attachIconBg"> -->
+              <!-- <ion-icon name="fsi-icon-calendar" color="white"></ion-icon> -->
+              <!-- </button> -->
+          </ion-avatar>
+
+          <ion-label>
+            <h2>{{ date | date:'fullDate' }}</h2>
+            <p>{{ date | date:'mediumTime' }}</p>
+          </ion-label>
+          <ion-radio value="{{ date }}"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>

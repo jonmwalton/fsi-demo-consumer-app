@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="header-background">
+    <ion-buttons class="order-1" start>
+      <!-- <button ion-button icon-only (click)="onOpenMenu()"> -->
+      <button ion-button icon-only menuToggle>
+          <ion-icon name="fsi-icon-menu"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title align="left">Applications</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+  <ion-tabs #tabs color="header-background">
+    <ion-tab [root]="draftsRoot" [rootParams]="draftsParams" tabTitle="DRAFTS"></ion-tab>
+    <ion-tab [root]="inProgressRoot" [rootParams]="progressParams" tabTitle="IN PROGRESS"></ion-tab>
+    <ion-tab [root]="completedRoot" [rootParams]="completedParams" tabTitle="COMPLETE"></ion-tab>
+  </ion-tabs>
+</ion-content>

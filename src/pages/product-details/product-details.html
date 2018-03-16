@@ -1,0 +1,79 @@
+<!--
+  Generated template for the ProductDetails page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header *ngIf="productDetails" class="header-bg-{{ productDetails.type }}" color="transparent">
+  <ion-navbar color="transparent">
+      <h1 class="header-title">{{ productDetails.name }}</h1>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content *ngIf="productDetails" padding>
+
+  <ion-fab top right>
+    <button ion-fab (click)="startApplication(productDetails.id)" color="secondary">
+      <ion-icon name="fsi-icon-add_shopping_cart" color="white"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list no-lines>
+    <ion-item ion-item>
+      <ion-icon color="dark" name="fsi-icon-applications" item-left></ion-icon>
+      <p text-left text-wrap>{{ productDetails.desc }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="fsi-icon-info" color="dark" item-left></ion-icon>
+      <h2>Product Type</h2>
+      <p text-left>{{ productDetails.productType }}</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="fsi-icon-money" color="dark" item-left></ion-icon>
+      <h2>Credit limit</h2>
+      <p text-left>
+        <span float-start>
+          Minimum: ${{ productDetails.creditLimit.min }}
+        </span>
+        <span float-end>
+          Maximum: ${{ productDetails.creditLimit.max }}
+        </span>
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="fsi-icon-info_outline" color="dark" item-left></ion-icon>
+      <h2>Rates & Fees</h2>
+      <p text-left>
+        <span float-start>
+          Interest Rate: ${{ productDetails.cost.interestRate }}
+        </span>
+        <span float-end>
+          Annual Fee: ${{ productDetails.cost.annualFee }}
+        </span>
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="fsi-icon-terms_conditions" color="dark" item-left></ion-icon>
+      <button no-padding ion-item  (click)="showTerms(productDetails.terms)">
+        Terms & Conditions
+        <ion-icon class="btn-arrow" color="dark" name="fsi-icon-arrow_right"></ion-icon>
+      </button>
+
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="fsi-icon-docs" color="dark" item-left></ion-icon>
+      <h2>Documents Required</h2>
+      <p text-left><span color="text-color">Proof of Identity - </span> {{ productDetails.requiredDocuments.id }}</p>
+      <p text-left><span color="text-color">Proof of Residence - </span> {{ productDetails.requiredDocuments.address }}</p>
+      <p text-left><span color="text-color">{{ productDetails.requiredDocuments.other }}</span></p>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
